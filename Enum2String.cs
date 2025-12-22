@@ -7,20 +7,52 @@ namespace Enum2String;
 /// </summary>
 public static class EnumExtension
 {
+#if NET10_0_OR_GREATER
+
+    extension(Enum value)
+    {
+        /// <summary>
+        /// Converts enum value to custom string representation if defined by <see cref="AsStringAttribute"/>,
+        /// otherwise returns default enum name.
+        /// </summary>
+        /// <returns>Custom string if attribute exists, otherwise enum name.</returns>
+        public string AsString()
+        {
+            FieldInfo? fi = value.GetType().GetField(value.ToString());
+            return fi?.GetCustomAttribute<AsStringAttribute>()?.name ?? value.ToString();
+        }
+
+        /// <summary>
+        /// Checks if enum value has custom string representation defined by <see cref="AsStringAttribute"/>.
+        /// </summary>
+        /// <returns>True if custom string representation exists, otherwise false.</returns>
+        public bool HasString()
+        {
+            FieldInfo? fi = value.GetType().GetField(value.ToString());
+            return fi?.GetCustomAttribute<AsStringAttribute>() != null;
+        }
+
+        /// <summary>
+        /// Attempts to get custom string representation for enum value.
+        /// </summary>
+        /// <param name="name">Output parameter containing the string representation.</param>
+        /// <returns>True if custom string exists, false if default enum name is used.</returns>
+        public bool TryGetString(out string name)
+        {
+            FieldInfo? fi = value.GetType().GetField(value.ToString());
+            AsStringAttribute? attr = fi?.GetCustomAttribute<AsStringAttribute>();
+            name = attr is null ? value.ToString() : attr.name;
+            return attr is not null;
+        }
+    }
+
+#else
     /// <summary>
     /// Converts enum value to custom string representation if defined by <see cref="AsStringAttribute"/>,
     /// otherwise returns default enum name.
     /// </summary>
-    /// <param name="value">The enum value to convert.</param>
     /// <returns>Custom string if attribute exists, otherwise enum name.</returns>
-    /// <example>
-    /// <code>
-    /// [AsString("Active User")]
-    /// Active,
-    /// 
-    /// var result = Status.Active.AsString(); // Returns "Active User"
-    /// </code>
-    /// </example>
+
     public static string AsString(this Enum value)
     {
         FieldInfo? fi = value.GetType().GetField(value.ToString());
@@ -30,7 +62,6 @@ public static class EnumExtension
     /// <summary>
     /// Checks if enum value has custom string representation defined by <see cref="AsStringAttribute"/>.
     /// </summary>
-    /// <param name="value">The enum value to check.</param>
     /// <returns>True if custom string representation exists, otherwise false.</returns>
     public static bool HasString(this Enum value)
     {
@@ -41,13 +72,8 @@ public static class EnumExtension
     /// <summary>
     /// Attempts to get custom string representation for enum value.
     /// </summary>
-    /// <param name="value">The enum value to convert.</param>
     /// <param name="name">Output parameter containing the string representation.</param>
     /// <returns>True if custom string exists, false if default enum name is used.</returns>
-    /// <remarks>
-    /// The output parameter always contains a valid string - either custom representation 
-    /// or default enum name.
-    /// </remarks>
     public static bool TryGetString(this Enum value, out string name)
     {
         FieldInfo? fi = value.GetType().GetField(value.ToString());
@@ -55,6 +81,7 @@ public static class EnumExtension
         name = attr is null ? value.ToString() : attr.name;
         return attr is not null;
     }
+#endif
 }
 
 /// <summary>
@@ -75,9 +102,9 @@ public sealed class AsStringAttribute : Attribute
     /// <param name="name">Field string</param>
     public AsStringAttribute(string name)
            => this.name = name;
-    
+
     /// <summary>
     /// Initializes attribute with default name "none".
     /// </summary>
-    public AsStringAttribute() : this("none") {}
+    public AsStringAttribute() : this("none") { }
 }
