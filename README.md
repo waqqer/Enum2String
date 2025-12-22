@@ -9,7 +9,7 @@ Enum2String is a minimalistic library that provides a simple yet powerful way to
 
 ## Guide
 
-1. Enum string mapping
+### 1. Enum string mapping
 ```cs
 enum SomeEnum
 {
@@ -23,7 +23,7 @@ enum SomeEnum
 }
 ```
 
-2. String get
+### 2. String get
 
 ##### `AsString()` and `AsStringAttribute` guide:
 
