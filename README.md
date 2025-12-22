@@ -111,15 +111,10 @@ high_name is "High"
 
 - .NET CLI:
 ```bash
-dotnet add package Woqqa.Enum2String --version 1.0.0
+dotnet add package Woqqa.Enum2String
 ```
 
 - Package Manager:
 ```bash
 Install-Package Woqqa.Enum2String
-```
-
-- Reference:
-```csproj
-<PackageReference Include="Woqqa.Enum2String" Version="1.0.0" />
 ```
