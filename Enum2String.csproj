@@ -2,8 +2,29 @@
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
+    <TargetFrameworks>net9.0;net10.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-  </PropertyGroup>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <LangVersion>latest</LangVersion>
 
+    <PackageId>Woqqa.Enum2String</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Woqqa</Authors>
+    <Product>Enum2String</Product>
+    <Description>
+    Enum2String is a minimalistic library that provides a simple yet powerful way to define custom string 
+    representations for enum values. With a single attribute and extension methods, you can easily map enum 
+    values to display names, localization strings, or any custom text representation.
+    </Description>
+
+    <PackageTags>enum;string;conversion;display;lightweight</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/waqqer/Enum2String</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/waqqer/Enum2String.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
 </Project>
