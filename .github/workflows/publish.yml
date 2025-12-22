@@ -1,0 +1,68 @@
+name: Publish to GitHub Packages
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+    
+    - name: Extract version from tag
+      id: get_version
+      run: |
+        if [[ ${{ github.ref }} == refs/tags/* ]]; then
+          VERSION="${GITHUB_REF#refs/tags/v}"
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+        else
+          SHORT_SHA=$(git rev-parse --short HEAD)
+          echo "VERSION=0.0.0-$SHORT_SHA" >> $GITHUB_OUTPUT
+        fi
+        echo "Version: $VERSION"
+    
+    - name: Restore dependencies
+      run: dotnet restore
+    
+    - name: Build
+      run: dotnet build -c Release --no-restore -p:Version=${{ steps.get_version.outputs.VERSION }}
+    
+    - name: Pack
+      run: |
+        dotnet pack -c Release --no-build \
+          -p:Version=${{ steps.get_version.outputs.VERSION }} \
+          -p:PackageId=Woqqa.Enum2String \
+          --output ./artifacts
+    
+    - name: Setup NuGet source for GitHub Packages
+      run: |
+        dotnet nuget add source \
+          --username waqqer \
+          --password ${{ secrets.GITHUB_TOKEN }} \
+          --store-password-in-clear-text \
+          --name github \
+          "https://nuget.pkg.github.com/waqqer/index.json"
+    
+    - name: Publish to GitHub Packages
+      run: |
+        for package in ./artifacts/*.nupkg; do
+          dotnet nuget push "$package" \
+            --api-key ${{ secrets.GITHUB_TOKEN }} \
+            --source github \
+            --skip-duplicate
+        done

@@ -61,6 +61,8 @@ BenchmarkDotNet.Artifacts/
 project.lock.json
 project.fragment.lock.json
 artifacts/
+nupkg/
+publish/
 
 # ASP.NET Scaffolding
 ScaffoldingReadMe.txt
@@ -399,3 +401,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+*.nupkg
+*.snupkg
