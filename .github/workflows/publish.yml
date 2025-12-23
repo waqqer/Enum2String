@@ -22,26 +22,29 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '8.0.x'
+        dotnet-version: '10.0.x'
     
     - name: Extract version from tag
       id: get_version
       run: |
         if [[ ${{ github.ref }} == refs/tags/* ]]; then
-          VERSION="${GITHUB_REF#refs/tags/}"
-          VERSION="${VERSION#v}"
+          TAG_NAME="${GITHUB_REF#refs/tags/}"
+          VERSION="${TAG_NAME#v}"  # Удаляем префикс v если есть
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
         else
           SHORT_SHA=$(git rev-parse --short HEAD)
           echo "VERSION=0.0.0-$SHORT_SHA" >> $GITHUB_OUTPUT
         fi
-          echo "Version: $VERSION"
+        echo "Version: $VERSION"
     
     - name: Restore dependencies
       run: dotnet restore
     
     - name: Build
-      run: dotnet build -c Release --no-restore -p:Version=${{ steps.get_version.outputs.VERSION }}
+      run: |
+        dotnet build -c Release --no-restore \
+          -p:Version=${{ steps.get_version.outputs.VERSION }} \
+          -p:GeneratePackageOnBuild=false
     
     - name: Pack
       run: |
