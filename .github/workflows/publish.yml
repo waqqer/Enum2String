@@ -51,6 +51,7 @@ jobs:
         dotnet pack -c Release \
           -p:Version=${{ steps.get_version.outputs.VERSION }} \
           -p:PackageId=Woqqa.Enum2String \
+          -p:TargetFrameworks=net10.0 \
           --output ./artifacts
     
     - name: Setup NuGet source for GitHub Packages
