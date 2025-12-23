@@ -48,7 +48,7 @@ jobs:
     
     - name: Pack
       run: |
-        dotnet pack -c Release --no-build \
+        dotnet pack -c Release \
           -p:Version=${{ steps.get_version.outputs.VERSION }} \
           -p:PackageId=Woqqa.Enum2String \
           --output ./artifacts
