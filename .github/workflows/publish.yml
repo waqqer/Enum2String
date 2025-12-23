@@ -71,3 +71,13 @@ jobs:
             --source github \
             --skip-duplicate
         done
+
+    - name: Publish to NuGet.org
+      run: |
+        echo "📤 Publishing to NuGet.org..."
+        for package in ./artifacts/*.nupkg; do
+          dotnet nuget push "$package" \
+            --api-key ${{ secrets.NUGET_API_KEY }} \
+            --source "https://api.nuget.org/v3/index.json" \
+            --skip-duplicate
+        done
