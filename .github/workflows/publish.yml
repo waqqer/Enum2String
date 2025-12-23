@@ -28,13 +28,14 @@ jobs:
       id: get_version
       run: |
         if [[ ${{ github.ref }} == refs/tags/* ]]; then
-          VERSION="${GITHUB_REF#refs/tags/v}"
+          VERSION="${GITHUB_REF#refs/tags/}"
+          VERSION="${VERSION#v}"
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
         else
           SHORT_SHA=$(git rev-parse --short HEAD)
           echo "VERSION=0.0.0-$SHORT_SHA" >> $GITHUB_OUTPUT
         fi
-        echo "Version: $VERSION"
+          echo "Version: $VERSION"
     
     - name: Restore dependencies
       run: dotnet restore
