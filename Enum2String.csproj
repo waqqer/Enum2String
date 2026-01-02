@@ -17,6 +17,8 @@
     representations for enum values. With a single attribute and extension methods, you can easily map enum 
     values to display names, localization strings, or any custom text representation.
     </Description>
+    
+    <PackageReadmeFile>README.md</PackageReadmeFile>
 
     <PackageTags>enum;string;conversion;display;lightweight</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -30,4 +32,8 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
   </PropertyGroup>
+
+  <ItemGroup>
+      <None Include="README.md" Pack="true" PackagePath="\"/>
+  </ItemGroup>
 </Project>
