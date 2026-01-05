@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
     <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -9,7 +8,7 @@
     <LangVersion>latest</LangVersion>
 
     <PackageId>Woqqa.Enum2String</PackageId>
-    <Version>2.2.0</Version>
+    <Version>2.2.2</Version>
     <Authors>Woqqa</Authors>
     <Product>Enum2String</Product>
     <Description>
