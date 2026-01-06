@@ -29,7 +29,7 @@ public static class EnumExtension
     extension(Enum value)
     {
         /// <summary>
-        /// Extension method for .NET 10.0+ that returns the custom string representation of an enum value.
+        /// Extension method that returns the custom string representation of an enum value.
         /// </summary>
         /// <param name="value">The enum value to convert.</param>
         /// <returns>
@@ -140,7 +140,7 @@ public static class EnumExtension
 #elif NET8_0_OR_GREATER
 
     /// <summary>
-    /// Extension method for .NET 10.0+ that returns the custom string representation of an enum value.
+    /// Extension method that returns the custom string representation of an enum value.
     /// </summary>
     /// <param name="value">The enum value to convert.</param>
     /// <returns>
