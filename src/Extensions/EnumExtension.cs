@@ -9,6 +9,9 @@ public static class EnumExtension
 
         public bool HasCustomString()
             => ValueValidator.CustomValueExists(value);
+
+        public bool HasString()
+            => ValueValidator.CustomValueExists(value);
         
         public bool TryGetString(out string val)
             => ValueValidator.TryGetCustomValue(value, out val);
