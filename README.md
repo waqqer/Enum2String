@@ -3,7 +3,7 @@
 # Enum 2 String
 
 ---
-#### Description
+## Description
 
 Enum2String is a minimalistic library that provides a simple yet powerful way to define custom string representations for enum values. With a single attribute and extension methods, you can easily map enum values to display names, localization strings, or any custom text representation.
 
