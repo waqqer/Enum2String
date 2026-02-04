@@ -6,28 +6,28 @@ internal static class ValueExistsCache
 {
     // Actually - without Default value
     // Full - with Default value
-    public static ConcurrentDictionary<(Type, string), (bool Actually, bool Full)> Cache { get; private set; } = [];
+    public static ConcurrentDictionary<(Type, string), bool> Cache { get; private set; } = [];
 
-    public static void Add(Type type, string name, (bool Actually, bool Full) data)
+    public static void Add(Type type, string name, bool exists)
     {
-        Cache.TryAdd((type, name), data);
+        Cache.TryAdd((type, name), exists);
     }
 
-    public static bool TryAdd(Type type, string name, (bool Actually, bool Full) data)
+    public static bool TryAdd(Type type, string name, bool exists)
     {
-        return Cache.TryAdd((type, name), data);
+        return Cache.TryAdd((type, name), exists);
     }
 
-    public static (bool Actually, bool Full) Get(Type type, string name)
+    public static bool Get(Type type, string name)
     {
-        Cache.TryGetValue((type, name), out (bool, bool) data);
+        Cache.TryGetValue((type, name), out bool data);
         return data;
     }
 
-    public static bool TryGet(Type type, string name, out (bool Actually, bool Full) data)
+    public static bool TryGet(Type type, string name, out bool exists)
     {
-        bool result = Cache.TryGetValue((type, name), out (bool, bool) val);
-        data = val;
+        bool result = Cache.TryGetValue((type, name), out bool val);
+        exists = val;
         return result;
     }
 

@@ -6,53 +6,35 @@ public class CheckingValueTests
     public void HasValue_Test()
     {
         TestEnum val = TestEnum.WithValue;
-        bool has = val.HasCustomString(false);
+        bool result = val.HasCustomString();
 
-        Assert.True(has);
+        Assert.True(result);
     }
 
     [Fact]
-    public void HasValueNull_Test()
+    public void HasValue_Null_Test()
     {
         TestEnum val = TestEnum.WithoutValue;
-        bool has = val.HasCustomString(false);
+        bool result = val.HasCustomString();
 
-        Assert.False(has);
-    }
-
-    [Fact]
-    public void HasValueNull1_NoDefault_Test()
-    {
-        TestEnumWithDefault val = TestEnumWithDefault.WithoutValue;
-        bool has = val.HasCustomString(false);
-
-        Assert.False(has);
-    }
-
-    [Fact]
-    public void HasValueNull2_NoDefault_Test()
-    {
-        TestEnum val = TestEnum.WithoutValue;
-        bool has = val.HasCustomString(false);
-
-        Assert.False(has);
+        Assert.False(result);
     }
 
     [Fact]
     public void HasValue_WithDefault_Test()
     {
         TestEnumWithDefault val = TestEnumWithDefault.WithValue;
-        bool has = val.HasCustomString(true);
+        bool result = val.HasCustomString();
 
-        Assert.True(has);
+        Assert.True(result);
     }
 
     [Fact]
-    public void HasValueNull_WithDefault_Test()
+    public void HasValue_Null_WithDefault()
     {
         TestEnumWithDefault val = TestEnumWithDefault.WithoutValue;
-        bool has = val.HasCustomString(true);
+        bool result = val.HasCustomString();
 
-        Assert.True(has);
+        Assert.False(result);
     }
 }
