@@ -27,8 +27,6 @@ public class BasicMappingTest
 [DefaultStringValue("SomeColor")]
 public enum TestingEnum_1_WithDefault
 {
-    [StringValue("Black_Color")]
-    Black,
     [StringValue("White_Color")]
     White,
     Blue
@@ -36,9 +34,5 @@ public enum TestingEnum_1_WithDefault
 
 public enum TestingEnum_1_WithoutDefault
 {
-    [StringValue("Black_Color")]
-    Black,
-    [StringValue("White_Color")]
-    White,
     Blue
 }
