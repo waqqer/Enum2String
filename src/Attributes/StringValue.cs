@@ -1,0 +1,20 @@
+namespace Enum2String;
+
+/// <summary>
+/// This attribute sets enum field string value
+/// </summary>
+[AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
+public sealed class StringValueAttribute : Attribute
+{
+    /// <summary>
+    /// Contains string value representation
+    /// </summary>
+    public string Value { get; private set; }
+
+    /// <summary>
+    /// Attribute constructor to set enum field string value represent
+    /// </summary>
+    /// <param name="Value">New string representation</param>
+    public StringValueAttribute(string Value)
+        => this.Value = Value;
+}
