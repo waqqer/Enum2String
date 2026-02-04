@@ -6,7 +6,7 @@ namespace Enum2String;
 /// This attribute sets enum field string value
 /// </summary>
 [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-public sealed class StringValueAttribute : Attribute
+public sealed class StringValueAttribute : Attribute, IValueRepresent
 {
     /// <summary>
     /// Contains string value representation
