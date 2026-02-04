@@ -23,6 +23,9 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '10.0.x'
+
+    - name: Testing
+      run: dotnet test
     
     - name: Extract version from tag
       id: get_version
