@@ -38,9 +38,6 @@ internal static class ValueValidator
         Type type = value.GetType();
         string name = value.ToString();
 
-        if (FieldValueCache.Has(type, name))
-            return FieldValueCache.Get(type, name);
-
         StringValueAttribute? attr = StringValueAttribute.Get(type, name);
 
         if (attr is not null)
