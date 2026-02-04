@@ -5,7 +5,7 @@ internal static class ValueValidator
     public static string GetDefaultOrCustomValue(Enum value)
     {
         Type type = value.GetType();
-        string name = nameof(value);
+        string name = value.ToString();
 
         if (FieldValueCache.Has(type, name))
             return FieldValueCache.Get(type, name);
@@ -36,7 +36,7 @@ internal static class ValueValidator
     public static string GetCustomValue(Enum value)
     {
         Type type = value.GetType();
-        string name = nameof(value);
+        string name = value.ToString();
 
         if (FieldValueCache.Has(type, name))
             return FieldValueCache.Get(type, name);
@@ -55,7 +55,7 @@ internal static class ValueValidator
     public static bool CustomValueExists(Enum value)
     {
         Type type = value.GetType();
-        string name = nameof(value);
+        string name = value.ToString();
 
         if(ValueExistsCache.Has(type, name))
             return ValueExistsCache.Get(type, name).Actually;
@@ -75,7 +75,7 @@ internal static class ValueValidator
     public static bool CustomValueExistsWithDefault(Enum value)
     {
         Type type = value.GetType();
-        string name = nameof(value);
+        string name = value.ToString();
 
         if(ValueExistsCache.TryGet(type, name, out var data))
         {
