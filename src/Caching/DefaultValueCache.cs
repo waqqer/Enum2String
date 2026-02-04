@@ -4,28 +4,28 @@ namespace Enum2String;
 
 internal static class DefaultValueCache
 {
-    public static ConcurrentDictionary<Type, (string value, bool has)> Cache { get; private set; } = [];
+    public static ConcurrentDictionary<Type, string> Cache { get; private set; } = [];
 
-    public static void Add(Type type, string value, bool has)
+    public static void Add(Type type, string value)
     {
-        Cache.TryAdd(type, (value, has));
+        Cache.TryAdd(type, value);
     }
 
-    public static bool TryAdd(Type type, string value, bool has)
+    public static bool TryAdd(Type type, string value)
     {
-        return Cache.TryAdd(type, (value, has));
+        return Cache.TryAdd(type, value);
     }
 
-    public static (string value, bool has) Get(Type type)
+    public static string Get(Type type)
     {
-        Cache.TryGetValue(type, out (string, bool) val);
-        return val;
+        Cache.TryGetValue(type, out string? val);
+        return val is null ? "" : val;
     }
 
-    public static bool TryGet(Type type, out (string value, bool has) value)
+    public static bool TryGet(Type type, out string value)
     {
-        bool result = Cache.TryGetValue(type, out (string, bool) val);
-        value = val;
+        bool result = Cache.TryGetValue(type, out string? val);
+        value = val is null ? "" : val;
         return result;
     }
 
