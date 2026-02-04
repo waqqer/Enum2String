@@ -34,7 +34,7 @@ public sealed class StringValueAttribute : Attribute
     /// Initializes a new instance of the <see cref="StringValueAttribute"/> class
     /// with the specified custom string value.
     /// </summary>
-    /// <param name="value">
+    /// <param name="Value">
     /// The custom string value for this enum member.
     /// If null or empty, an empty string will be stored.
     /// </param>

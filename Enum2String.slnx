@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Enum2String.csproj" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/Enum2String.Tests.csproj" />
+  </Folder>
+</Solution>
