@@ -1,4 +1,4 @@
-<img src="docs/icon.jpg" alt="icon" style="width: 250px; height: 250px;">
+<img src="docs/icon.png" alt="icon" style="width: 250px; height: 250px;">
 
 # Enum 2 String
 
