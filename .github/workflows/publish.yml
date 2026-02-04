@@ -53,7 +53,7 @@ jobs:
     
     - name: Pack
       run: |
-        dotnet pack Woqqa.Enum2String/Woqqa.Enum2String.csproj \
+        dotnet pack src/Enum2String.csproj \
           -c Release \
           --no-build \
           -p:Version=${{ steps.get_version.outputs.VERSION }} \
