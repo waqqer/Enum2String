@@ -45,7 +45,9 @@ jobs:
     
     - name: Build
       run: |
-        dotnet build -c Release --no-restore \
+        dotnet build Woqqa.Enum2String/Woqqa.Enum2String.csproj \
+          -c Release \
+          --no-restore \
           -p:Version=${{ steps.get_version.outputs.VERSION }} \
           -p:GeneratePackageOnBuild=false
     
