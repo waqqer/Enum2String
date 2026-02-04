@@ -1,3 +1,5 @@
+using System.Reflection;
+
 namespace Enum2String;
 
 /// <summary>
@@ -17,4 +19,10 @@ public sealed class StringValueAttribute : Attribute
     /// <param name="Value">New string representation</param>
     public StringValueAttribute(string Value)
         => this.Value = Value;
+
+    internal static StringValueAttribute? Get(Type type, string name)
+    {
+        StringValueAttribute? attr = type.GetField(name)?.GetCustomAttribute<StringValueAttribute>();
+        return attr;
+    }
 }

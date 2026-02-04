@@ -1,3 +1,5 @@
+using System.Reflection;
+
 namespace Enum2String;
 
 /// <summary>
@@ -17,4 +19,10 @@ public sealed class DefaultStringValueAttribute : Attribute
     /// <param name="Value">New string representation</param>
     public DefaultStringValueAttribute(string Value)
         => this.Value = Value;
+
+    internal static DefaultStringValueAttribute? Get(Type type)
+    {
+        DefaultStringValueAttribute? attr = type.GetCustomAttribute<DefaultStringValueAttribute>();
+        return attr;
+    }
 }
