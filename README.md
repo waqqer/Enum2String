@@ -1,5 +1,9 @@
 <img src="docs/icon.png" alt="icon" style="width: 250px; height: 250px;">
 
+<div align="center">
+    <img src="docs/icon.png" alt="icon" style="width: 250px; height: 250px;">
+</div>
+
 # Enum 2 String
 
 ---
