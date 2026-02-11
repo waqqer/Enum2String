@@ -27,7 +27,7 @@ internal static class ValueValidator
         {
             DefaultValueCache.Add(type, default_attr.Value);
             FieldValueCache.Add(type, name, default_attr.Value);
-            return default_attr.Value;
+            return ValueReplacer.GetValueByReplaceOption(default_attr, name);
         }
 
         return name;

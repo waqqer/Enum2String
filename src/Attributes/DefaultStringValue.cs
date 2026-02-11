@@ -12,6 +12,7 @@ public sealed class DefaultStringValueAttribute : Attribute, IValueRepresent
     /// Contains string value representation
     /// </summary>
     public string Value { get; private set; }
+    public ValueReplaceOption option { get; private set; } = ValueReplaceOption.None;
 
     /// <summary>
     /// Attribute constructor to set default enum string value represent
@@ -19,6 +20,9 @@ public sealed class DefaultStringValueAttribute : Attribute, IValueRepresent
     /// <param name="Value">New string representation</param>
     public DefaultStringValueAttribute(string Value)
         => this.Value = Value;
+
+    public DefaultStringValueAttribute(string Value, ValueReplaceOption Option) : this(Value)
+        => this.option = Option;
 
     internal static DefaultStringValueAttribute? Get(Type type)
     {

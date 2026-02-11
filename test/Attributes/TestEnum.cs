@@ -16,3 +16,11 @@ public enum TestEnumWithDefault
     WithoutValue,
     SomeValue
 }
+
+[DefaultStringValue("Color: {Value}", ValueReplaceOption.Replace)]
+public enum TestEnumWithReplaceOption
+{
+    [StringValue("Blue color")]
+    Blue,
+    White
+}
